@@ -5,7 +5,7 @@ ws.onmessage = function(event) {
     let message = document.createElement('li')
 
     let response_body = JSON.parse(event.data)
-    let content = document.createTextNode(response_body.counter + ' ' + response_body.message)
+    let content = document.createTextNode('user_id: ' + response_body.id + ' - ' + response_body.counter + ' ' + response_body.message)
     
     message.appendChild(content)
     messages.appendChild(message)
