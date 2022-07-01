@@ -2,6 +2,14 @@
 <html>
     <head>
         <title>Messages</title>
+        <style>
+            .layer1 {
+                float: left;
+            }
+            .layer2 {
+                float: right;
+            }
+        </style>
     </head>
     <body>
         <h1>Message</h1>
@@ -9,8 +17,14 @@
             <input type="text" id="messageText" autocomplete="off"/>
             <button>Send</button>
         </form>
-        <ul id='messages'>
-        </ul>
+        <div class="layer1">
+            <ul id='messages'>
+            </ul>
+        </div>
+        <div class="layer2">
+            <ul id='other_messages'>
+            </ul>
+        </div>
         <script src='js/index.js'></script>
     </body>
 </html>

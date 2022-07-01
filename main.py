@@ -9,6 +9,7 @@ templates = Jinja2Templates(directory="templates")
 
 bad_gl_list = []  # without db
 
+
 @app.get("/")
 def get(request: Request):
     return templates.TemplateResponse("index.html", {"request": request})
@@ -25,7 +26,11 @@ async def websocket_endpoint(websocket: WebSocket):
         response_body = {
             'counter': counter,
             'message': data['message'],
-            'id': bad_gl_list.index(websocket)
+            'sender_id': bad_gl_list.index(websocket)
         }
         for i, ws in enumerate(bad_gl_list):
-            await ws.send_json(response_body)
+            response_body.update({'receiver_id': i})
+            try:
+                await ws.send_json(response_body)
+            except:
+                bad_gl_list.remove(ws)
